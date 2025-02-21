@@ -85,7 +85,7 @@ other = "The requested page could not be found on my blog."
 other = "Please proceed to my <a href=\"%s\">homepage</a>."
 
 [page_does_not_exist_jedi]
-other = "These aren't the blog posts you're looking for..."
+other = "This isn't the web page you're looking for..."
 
 [head_back_jedi]
 other = "Move along to my <a href=\"%s\">homepage</a>"

@@ -1,65 +1,10 @@
+{{ $emotion := resources.Get "js/404/emotion.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $emotion.RelPermalink }}" integrity="{{ $emotion.Data.Integrity }}" crossorigin="anonymous"></script>
 <script>
-  // Global emotion state
-  window.error404 = {
-    currentEmotion: null,
-    // Get configured emotions or use all if none specified
-    emotions: {{ if .Site.Params.error404.emotions }}
-      {{ .Site.Params.error404.emotions | jsonify | safeJS }}
-    {{ else }}
-      [
-        'generic',
-        'confused',
-        'tableflip',
-        'unflip',
-        'annoyed',
-        'frustrated',
-        'content',
-        'apologetic',
-        'helpful',
-        'professional'
-      ]
-    {{ end }},
-
-    // Get Jedi chance from config or use default
-    jediChance: {{ if .Site.Params.error404.jediChance }}
-      {{ .Site.Params.error404.jediChance }}
-    {{ else }}
-      1
-    {{ end }},
-
-    // Check if Jedi emotion is enabled
-    isJediEnabled: {{ if .Site.Params.error404.emotions }}
-      {{ if in .Site.Params.error404.emotions "jedi" }}true{{ else }}false{{ end }}
-    {{ else }}
-      true
-    {{ end }},
-
-    // Generate a new random emotion
-    generateEmotion: function() {
-      // Check for Jedi chance if enabled
-      if (this.isJediEnabled && (Math.random() * 100) < this.jediChance) {
-        this.currentEmotion = 'jedi';
-      } else {
-        // Get random emotion from configured list
-        this.currentEmotion = this.emotions[Math.floor(Math.random() * this.emotions.length)];
-      }
-
-      // Dispatch event for other components
-      document.dispatchEvent(new CustomEvent('emotionGenerated', {
-        detail: { emotion: this.currentEmotion }
-      }));
-
-      return this.currentEmotion;
-    },
-
-    // Initialize on page load
-    init: function() {
-      document.addEventListener('DOMContentLoaded', () => {
-        this.generateEmotion();
-      });
-    }
-  };
-
-  // Initialize
-  window.error404.init();
+  (function() {
+    window.error404.init({
+      emotions: {{ if isset .Site.Params.error404 "emotions" }}{{ .Site.Params.error404.emotions | jsonify | safeJS }}{{ else }}null{{ end }},
+      jediChance: {{ if isset .Site.Params.error404 "jediChance" }}{{ .Site.Params.error404.jediChance }}{{ else }}1{{ end }}
+    });
+  })();
 </script>
