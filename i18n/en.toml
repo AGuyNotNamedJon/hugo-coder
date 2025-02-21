@@ -25,10 +25,70 @@ other = "{{ .Count }}-minute read"
 other = "Page Not Found"
 
 [page_does_not_exist]
-other = "Sorry, this page does not exist."
+other = "Oops! This page seems to have wandered off..."
 
 [head_back]
-other = "You can head back to the <a href=\"{{ . }}\">homepage</a>."
+other = "Why not head back to my <a href=\"%s\">homepage</a>?"
+
+[page_does_not_exist_confused]
+other = "Hmm... I'm as confused as you are about where this page went."
+
+[head_back_confused]
+other = "Let's go back to my <a href=\"%s\">homepage</a> and start over."
+
+[page_does_not_exist_tableflip]
+other = "Argh! This page is nowhere to be found!"
+
+[head_back_tableflip]
+other = "Take a deep breath and visit my <a href=\"%s\">homepage</a> instead."
+
+[page_does_not_exist_unflip]
+other = "Let's stay calm - this page isn't here, but that's okay."
+
+[head_back_unflip]
+other = "Come check out what's actually on my <a href=\"%s\">homepage</a>."
+
+[page_does_not_exist_annoyed]
+other = "Well, this is awkward. The page you're looking for isn't here."
+
+[head_back_annoyed]
+other = "Maybe try my <a href=\"%s\">homepage</a> instead?"
+
+[page_does_not_exist_frustrated]
+other = "Ugh, sorry! I can't find the page you're looking for."
+
+[head_back_frustrated]
+other = "Let's get you back to my <a href=\"%s\">homepage</a>."
+
+[page_does_not_exist_content]
+other = "No worries! While this page isn't here, there's plenty of other cool stuff."
+
+[head_back_content]
+other = "Check out what else I've got on my <a href=\"%s\">homepage</a>!"
+
+[page_does_not_exist_apologetic]
+other = "I'm really sorry, but I can't find that page anywhere."
+
+[head_back_apologetic]
+other = "Would you like to visit my <a href=\"%s\">homepage</a> instead?"
+
+[page_does_not_exist_helpful]
+other = "That page seems to be missing, but I can help you find something else!"
+
+[head_back_helpful]
+other = "Start exploring from my <a href=\"%s\">homepage</a>."
+
+[page_does_not_exist_professional]
+other = "The requested page could not be found on my blog."
+
+[head_back_professional]
+other = "Please proceed to my <a href=\"%s\">homepage</a>."
+
+[page_does_not_exist_jedi]
+other = "These aren't the blog posts you're looking for..."
+
+[head_back_jedi]
+other = "Move along to my <a href=\"%s\">homepage</a>"
 
 [licensed_under]
 other = "Licensed under"

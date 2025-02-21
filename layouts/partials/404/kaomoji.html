@@ -1,0 +1,108 @@
+<script>
+  const kaomojis = {
+    generic: [], // Empty array for no kaomojis
+    confused: [
+      '(⊙_⊙;)',      // puzzled
+      '(◎_◎;)',      // bewildered
+      '(・_・;)',     // uncertain
+      '(・・?)',      // questioning
+      '(＠_＠)',      // dazed
+      '(・_・)ヾ'      // perplexed
+    ],
+    tableflip: [
+      '(╯°□°）╯︵ ┻━┻',    // classic tableflip
+      '(ﾉ≧∇≦)ﾉ ︵ ┻━┻',    // excited tableflip
+      '(ノಠ益ಠ)ノ彡┻━┻',    // angry tableflip
+      '(┛◉Д◉)┛彡┻━┻',      // shocked tableflip
+      '(ﾉ´･ω･)ﾉ ︵ ┻━┻'     // playful tableflip
+    ],
+    unflip: [
+      '┬─┬ノ( º _ ºノ)',    // calm restoration
+      '┬──┬◡ﾉ(° -°ﾉ)',     // gentle unflip
+      '┬─┬ノ(ಠ_ಠノ)',      // stern unflip
+      '(ヘ･_･)ヘ┳━┳',       // careful unflip
+      '┬──┬ ¯\\_(ツ)'       // casual unflip
+    ],
+    annoyed: [
+      'ಠ_ಠ',         // disapproving
+      '(¬_¬)',       // unamused
+      '(→_→)',       // skeptical
+      '(；￣Д￣)',    // mildly annoyed
+      '(￣ω￣;)'      // slightly irritated
+    ],
+    frustrated: [
+      '(╯°□°）╯',    // exasperated
+      '(；一_一)',    // tired
+      '(-_-;)ゞ',     // troubled
+      '(－‸ლ)',      // face palm
+      '(>_<)'        // distressed
+    ],
+    content: [
+      '(￣▽￣)ノ',    // cheerful
+      '(｡◕‿◕｡)',    // pleasant
+      '(ᵔᴥᵔ)',      // satisfied
+      '(◠‿◠)',      // happy
+      '(^ω^)',       // delighted
+    ],
+    apologetic: [
+      '(╯︵╰,)',     // sorry
+      '(っ˘̩╭╮˘̩)っ',  // regretful
+      '(ノ_<。)',     // apologetic bow
+      '(T_T)',       // sincere apology
+      '(-_-;)'       // embarrassed
+    ],
+    helpful: [
+      '(づ｡◕‿‿◕｡)づ', // offering help
+      '(ᵔᴥᵔ)',      // friendly
+      '(^_^;)',      // trying to help
+      'ヾ(⌐■_■)ノ♪'  // confident assistance
+    ],
+    professional: [
+      '¯\\_(ツ)_/¯',  // understanding
+      '(⌐■_■)',      // professional
+      '(˚Δ˚)b',      // affirmative
+      '(ー_ー)!!'     // acknowledging
+    ],
+    jedi: [
+      'ᕦ(° - °)',  // force hand wave
+      '(∩｀-´)⊃━☆ﾟ.*･｡ﾟ', // force powers
+      '|-o-|'      // lightsaber
+    ]
+  };
+
+  function addKaomoji() {
+    // Small chance (1%) to trigger Star Wars theme
+    const isJediMindTrick = Math.random() < 0.01;
+    
+    let randomEmotion;
+    if (isJediMindTrick) {
+      randomEmotion = 'jedi';
+    } else {
+      const regularEmotions = Object.keys(kaomojis).filter(e => e !== 'jedi');
+      randomEmotion = regularEmotions[Math.floor(Math.random() * regularEmotions.length)];
+    }
+    
+    const emotionKaomojis = kaomojis[randomEmotion];
+    const randomKaomoji = emotionKaomojis[Math.floor(Math.random() * emotionKaomojis.length)];
+    
+    // Set the kaomoji only if not generic emotion
+    if (randomEmotion !== 'generic') {
+      document.getElementById('kaomoji-top').textContent = randomKaomoji;
+    } else {
+      document.getElementById('kaomoji-top').textContent = '';
+    }
+
+    // Dispatch emotion event for messages.html to handle
+    document.dispatchEvent(new CustomEvent('emotionSelected', {
+      detail: { emotion: randomEmotion }
+    }));
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    addKaomoji();
+  });
+</script>
+
+<div class="kaomoji-container">
+  <span id="kaomoji-top" class="kaomoji"></span>
+</div>

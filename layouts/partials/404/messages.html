@@ -1,0 +1,60 @@
+<script>
+  const messages = {
+    generic: {
+      not_exist: '{{ i18n "page_does_not_exist" }}',
+      head_back: '{{ i18n "head_back" .Site.BaseURL | safeHTML }}'
+    },
+    confused: {
+      not_exist: '{{ i18n "page_does_not_exist_confused" }}',
+      head_back: '{{ i18n "head_back_confused" .Site.BaseURL | safeHTML }}'
+    },
+    tableflip: {
+      not_exist: '{{ i18n "page_does_not_exist_tableflip" }}',
+      head_back: '{{ i18n "head_back_tableflip" .Site.BaseURL | safeHTML }}'
+    },
+    unflip: {
+      not_exist: '{{ i18n "page_does_not_exist_unflip" }}',
+      head_back: '{{ i18n "head_back_unflip" .Site.BaseURL | safeHTML }}'
+    },
+    annoyed: {
+      not_exist: '{{ i18n "page_does_not_exist_annoyed" }}',
+      head_back: '{{ i18n "head_back_annoyed" .Site.BaseURL | safeHTML }}'
+    },
+    frustrated: {
+      not_exist: '{{ i18n "page_does_not_exist_frustrated" }}',
+      head_back: '{{ i18n "head_back_frustrated" .Site.BaseURL | safeHTML }}'
+    },
+    content: {
+      not_exist: '{{ i18n "page_does_not_exist_content" }}',
+      head_back: '{{ i18n "head_back_content" .Site.BaseURL | safeHTML }}'
+    },
+    apologetic: {
+      not_exist: '{{ i18n "page_does_not_exist_apologetic" }}',
+      head_back: '{{ i18n "head_back_apologetic" .Site.BaseURL | safeHTML }}'
+    },
+    helpful: {
+      not_exist: '{{ i18n "page_does_not_exist_helpful" }}',
+      head_back: '{{ i18n "head_back_helpful" .Site.BaseURL | safeHTML }}'
+    },
+    professional: {
+      not_exist: '{{ i18n "page_does_not_exist_professional" }}',
+      head_back: '{{ i18n "head_back_professional" .Site.BaseURL | safeHTML }}'
+    },
+    jedi: {
+      not_exist: '{{ i18n "page_does_not_exist_jedi" }}',
+      head_back: '{{ i18n "head_back_jedi" .Site.BaseURL | safeHTML }}'
+    }
+  };
+
+  // Update the text content based on the selected emotion
+  document.addEventListener('emotionSelected', function(event) {
+    const messageSet = messages[event.detail.emotion];
+    document.getElementById('page-not-exist').textContent = messageSet.not_exist;
+    document.getElementById('head-back').innerHTML = messageSet.head_back;
+  });
+</script>
+
+<p>
+  <div id="page-not-exist"></div>
+  <div id="head-back"></div>
+</p>

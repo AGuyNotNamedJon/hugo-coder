@@ -1,0 +1,26 @@
+.error {
+  .kaomoji-container {
+    display: grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .kaomoji {
+    padding: 10px;
+    font-size: 1.5em;
+    color: $fg-color-dark;
+  }
+
+  #page-not-exist,
+  #head-back {
+    color: $fg-color-dark;
+    a {
+      color: $link-color-dark;
+      &:hover {
+        color: lighten($link-color-dark, 10%);
+      }
+    }
+  }
+}
