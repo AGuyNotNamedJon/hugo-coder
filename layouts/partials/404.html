@@ -1,7 +1,19 @@
 <section class="container centered">
   <div class="error">
     {{ partial "404/404.html" . }}
-    {{ partial "404/kaomoji.html" . }}
-    {{ partial "404/messages.html" . }}
+    {{ partial "404/emotion.html" . }}
+    {{- if .Site.Params.error404.enableKaomoji -}}
+      {{ partial "404/kaomoji.html" . }}
+    {{- end -}}
+    {{- if ne .Site.Params.error404.messages "none" -}}
+      {{- if eq .Site.Params.error404.messages "custom" -}}
+        {{ partial "404/messages.html" . }}
+      {{- else -}}
+        <p>
+          <div>{{ i18n "page_does_not_exist" }}</div>
+          <div>{{ i18n "head_back" .Site.BaseURL | safeHTML }}</div>
+        </p>
+      {{- end -}}
+    {{- end -}}
   </div>
 </section>

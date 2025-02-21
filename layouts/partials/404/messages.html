@@ -46,11 +46,15 @@
     }
   };
 
-  // Update the text content based on the selected emotion
-  document.addEventListener('emotionSelected', function(event) {
-    const messageSet = messages[event.detail.emotion];
+  function updateMessage(emotion) {
+    const messageSet = messages[emotion];
     document.getElementById('page-not-exist').textContent = messageSet.not_exist;
     document.getElementById('head-back').innerHTML = messageSet.head_back;
+  }
+
+  // Listen for emotion changes
+  document.addEventListener('emotionGenerated', function(event) {
+    updateMessage(event.detail.emotion);
   });
 </script>
 

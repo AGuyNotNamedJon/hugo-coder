@@ -70,36 +70,21 @@
     ]
   };
 
-  function addKaomoji() {
-    // Small chance (1%) to trigger Star Wars theme
-    const isJediMindTrick = Math.random() < 0.01;
-    
-    let randomEmotion;
-    if (isJediMindTrick) {
-      randomEmotion = 'jedi';
-    } else {
-      const regularEmotions = Object.keys(kaomojis).filter(e => e !== 'jedi');
-      randomEmotion = regularEmotions[Math.floor(Math.random() * regularEmotions.length)];
-    }
-    
-    const emotionKaomojis = kaomojis[randomEmotion];
+  function updateKaomoji(emotion) {
+    const emotionKaomojis = kaomojis[emotion];
     const randomKaomoji = emotionKaomojis[Math.floor(Math.random() * emotionKaomojis.length)];
     
     // Set the kaomoji only if not generic emotion
-    if (randomEmotion !== 'generic') {
+    if (emotion !== 'generic') {
       document.getElementById('kaomoji-top').textContent = randomKaomoji;
     } else {
       document.getElementById('kaomoji-top').textContent = '';
     }
-
-    // Dispatch emotion event for messages.html to handle
-    document.dispatchEvent(new CustomEvent('emotionSelected', {
-      detail: { emotion: randomEmotion }
-    }));
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    addKaomoji();
+  // Listen for emotion changes
+  document.addEventListener('emotionGenerated', function(event) {
+    updateKaomoji(event.detail.emotion);
   });
 </script>
 
