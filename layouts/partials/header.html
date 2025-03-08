@@ -5,6 +5,20 @@
       {{ .Title }}
     </a>
     {{ end }}
+            
+    {{/* Add social links */}}
+    {{ with .Site.Params.social }}
+      {{ range sort . "weight" }}
+        {{ if .showInHeader }}
+          <li class="navigation-item">
+            <a class="navigation-link" href="{{ .url }}" title="{{ .name }}">
+              <i class="{{ .icon }}" aria-hidden="true"></i>
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
     {{ if or .Site.Menus.main hugo.IsMultilingual }}
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
