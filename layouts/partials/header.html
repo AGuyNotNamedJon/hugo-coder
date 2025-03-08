@@ -18,6 +18,18 @@
             </li>
           {{ end }}
         {{ end }}
+
+        {{/* Add RSS link */}}
+        {{ with .Site.Params.rss }}
+          <li class="navigation-item">
+            <a class="navigation-link" href="{{ .url }}" title="RSS"
+              {{- with .rel }} rel="{{ . }}"{{ end }}
+              {{- with .type }} type="{{ . }}"{{ end }}>
+              <i class="{{ .icon }}" aria-hidden="true"></i>
+            </a>
+          </li>
+        {{ end }}
+
         {{ if hugo.IsMultilingual }}
           {{ $node := . }}
           {{ .Scratch.Set "separator" true }}
